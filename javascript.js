@@ -4,16 +4,27 @@ let display = document.getElementById('display')
 const equalButton = document.getElementById('equalButton')
 const clearButton = document.getElementById('clearButton')
 const deleteButton = document.getElementById('deleteButton')
+const decimalButton = document.getElementById('decimalButton')
 
 let inputValue = '';
 let clickedOperator = '';
 let storedNumber = ''; 
+let result = ''; 
 
 function numberClick(){
     numbers.forEach( number => {
         number.addEventListener('click',() => {
-        inputValue += number.textContent
-        display.innerText = inputValue
+            if(result.toString().length >= 1){
+                inputValue = '';
+                clickedOperator = '';
+                storedNumber = ''; 
+                result = '';
+                inputValue += number.textContent
+                display.innerText = inputValue
+            }else{
+            inputValue += number.textContent
+            display.innerText = inputValue
+            }
         })
     })
 }
@@ -23,32 +34,31 @@ function operatorClick(){
     operators.forEach(operator => {
         operator.addEventListener('click',() => {
 
-            storedNumber = inputValue
+            storedNumber = inputValue            
             inputValue = ''
 
             clickedOperator = operator.innerText
 
-            display.innerText = clickedOperator + inputValue;
-            
-            
+            display.innerText = clickedOperator + inputValue;            
         })
     })
 }
 operatorClick()
 
 function calculate(){
-        const result = operate( parseFloat(storedNumber), parseFloat(inputValue), clickedOperator)
-        display.innerText = result   
+        result = operate(parseFloat(storedNumber), parseFloat(inputValue), clickedOperator)
+        display.innerText = result
+        
 }
 
 equalButton.addEventListener('click', calculate)
-
 
 function clearKeyClick(){
     clearButton.addEventListener('click', () => {
         inputValue = '';
         clickedOperator = '';
         storedNumber = ''; 
+        result =''
         display.innerText = 0
     })
 }
@@ -90,8 +100,8 @@ function operate (a, b, operator){
         case '*':
             return multiply(a, b)
             break;
-        case '÷' :
-            return divide (a, b)
+         case '÷':
+            return divide (a,b)
             break;
         default:
             console.log('try again'); 
