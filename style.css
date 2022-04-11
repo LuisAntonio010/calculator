@@ -16,10 +16,8 @@ html{
     border: 1px solid  blue;
     display: grid;
     align-items: center;
-    
-
 }
 
-.clear, #equalButton{
+#clearButton, #equalButton{
     grid-column: span 2;
 }

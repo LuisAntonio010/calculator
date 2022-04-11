@@ -1,44 +1,61 @@
 let numbers = Array.from(document.getElementsByClassName('numbers'))
 let operators = Array.from(document.getElementsByClassName('operators'))
 let display = document.getElementById('display')
-let equalButton = document.getElementById('equalButton')
+const equalButton = document.getElementById('equalButton')
+const clearButton = document.getElementById('clearButton')
 
 let inputValue = '';
 let clickedOperator = '';
 let storedNumber = ''; 
 
-
-let secondNumber = ''; 
-
-numbers.forEach( number => {
-    number.addEventListener('click',() => {
-    inputValue += number.textContent
-    display.innerText = inputValue
- 
+function numberClick(){
+    numbers.forEach( number => {
+        number.addEventListener('click',() => {
+        inputValue += number.textContent
+        display.innerText = inputValue
+        })
     })
-})
+}
+numberClick()
 
-operators.forEach(operator => {
-    operator.addEventListener('click',() => {
+function operatorClick(){
+    operators.forEach(operator => {
+        operator.addEventListener('click',() => {
 
-        storedNumber = inputValue
-        inputValue = ''
+            storedNumber = inputValue
+            inputValue = ''
 
-        clickedOperator = operator.innerText
+            clickedOperator = operator.innerText
 
-        display.innerText = operator.innerText + inputValue
-        
+            display.innerText = clickedOperator + inputValue;
+            
+        })
     })
-})
+}
+operatorClick()
 
-equalButton.addEventListener('click', () =>{
-    let result = ''
-    
-})
+function equalKeyClick(){
+    equalButton.addEventListener('click', () =>{
+        let result = operate( parseFloat(storedNumber), parseFloat(inputValue), clickedOperator)
+        display.innerText = result    
+    })
+}
+equalKeyClick()
+
+function clearKeyClick(){
+    clearButton.addEventListener('click', () => {
+        inputValue = '';
+        clickedOperator = '';
+        storedNumber = ''; 
+        display.innerText = 0
+    })
+}
+clearKeyClick()
+
 
 
 function add (a,b){
-    return a+b
+    return a + b
 }
 
 function substract (a,b){
