@@ -20,6 +20,6 @@ html{
 
 }
 
-.clear, .equal{
+.clear, #equalButton{
     grid-column: span 2;
 }

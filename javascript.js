@@ -1,23 +1,39 @@
 let numbers = Array.from(document.getElementsByClassName('numbers'))
 let operators = Array.from(document.getElementsByClassName('operators'))
 let display = document.getElementById('display')
+let equalButton = document.getElementById('equalButton')
 
-let firstNumber = '';
+let inputValue = '';
 let clickedOperator = '';
 let storedNumber = ''; 
+
+
 let secondNumber = ''; 
 
 numbers.forEach( number => {
     number.addEventListener('click',() => {
-    firstNumber += number.textContent
-    display.innerText = firstNumber
+    inputValue += number.textContent
+    display.innerText = inputValue
+ 
     })
 })
 
 operators.forEach(operator => {
     operator.addEventListener('click',() => {
-        firstNumber = storedNumber
+
+        storedNumber = inputValue
+        inputValue = ''
+
+        clickedOperator = operator.innerText
+
+        display.innerText = operator.innerText + inputValue
+        
     })
+})
+
+equalButton.addEventListener('click', () =>{
+    let result = ''
+    
 })
 
 
@@ -37,7 +53,6 @@ function divide (a,b) {
     return a/b
 }
 
-
 function operate (a, b, operator){
     switch(operator){
         case '+':
@@ -53,6 +68,7 @@ function operate (a, b, operator){
             return divide (a, b)
             break;
         default:
+            console.log('try again'); 
             break;
     }
 }
