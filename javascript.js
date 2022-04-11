@@ -11,6 +11,7 @@ let clickedOperator = '';
 let storedNumber = ''; 
 let result = ''; 
 
+
 function numberClick(){
     numbers.forEach( number => {
         number.addEventListener('click',() => {
@@ -22,24 +23,30 @@ function numberClick(){
                 inputValue += number.textContent
                 display.innerText = inputValue
             }else{
-            inputValue += number.textContent
-            display.innerText = inputValue
+                inputValue += number.textContent
+                display.innerText = inputValue
             }
         })
     })
 }
 numberClick()
 
+
 function operatorClick(){
     operators.forEach(operator => {
         operator.addEventListener('click',() => {
-
+            if(result.toString().length >= 1){
+            storedNumber = result      
+            result = ''     
+            inputValue = ''
+            clickedOperator = operator.innerText
+            display.innerText = clickedOperator + inputValue;                
+            }else{
             storedNumber = inputValue            
             inputValue = ''
-
             clickedOperator = operator.innerText
-
-            display.innerText = clickedOperator + inputValue;            
+            display.innerText = clickedOperator + inputValue;
+            }
         })
     })
 }
@@ -48,7 +55,7 @@ operatorClick()
 function calculate(){
         result = operate(parseFloat(storedNumber), parseFloat(inputValue), clickedOperator)
         display.innerText = result
-        
+        storedNumber = result
 }
 
 equalButton.addEventListener('click', calculate)
@@ -71,6 +78,13 @@ function deleteClickKey(){
     })
 }
 deleteClickKey()
+
+function decimalDisable(){
+    
+    decimalButton.disabled = true;
+    
+}
+decimalDisable()
 
 
 function add (a,b){
