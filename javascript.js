@@ -3,6 +3,7 @@ let operators = Array.from(document.getElementsByClassName('operators'))
 let display = document.getElementById('display')
 const equalButton = document.getElementById('equalButton')
 const clearButton = document.getElementById('clearButton')
+const deleteButton = document.getElementById('deleteButton')
 
 let inputValue = '';
 let clickedOperator = '';
@@ -29,18 +30,19 @@ function operatorClick(){
 
             display.innerText = clickedOperator + inputValue;
             
+            
         })
     })
 }
 operatorClick()
 
-function equalKeyClick(){
-    equalButton.addEventListener('click', () =>{
-        let result = operate( parseFloat(storedNumber), parseFloat(inputValue), clickedOperator)
-        display.innerText = result    
-    })
+function calculate(){
+        const result = operate( parseFloat(storedNumber), parseFloat(inputValue), clickedOperator)
+        display.innerText = result   
 }
-equalKeyClick()
+
+equalButton.addEventListener('click', calculate)
+
 
 function clearKeyClick(){
     clearButton.addEventListener('click', () => {
@@ -52,6 +54,13 @@ function clearKeyClick(){
 }
 clearKeyClick()
 
+function deleteClickKey(){
+    deleteButton.addEventListener('click', () =>{
+        display.innerText = display.innerText.slice(0,-1)
+        inputValue = display.innerText
+    })
+}
+deleteClickKey()
 
 
 function add (a,b){
