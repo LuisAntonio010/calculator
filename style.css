@@ -3,30 +3,23 @@ html{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-
 .container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid black;
- }
-
-.button-display{
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat(4, 75px);
-    grid-template-rows:  repeat(5,75px);
-    border: 1px solid blue;
+    grid-template-rows:  repeat(6,75px);
+    border: 1px solid  blue
 }
 
-.container-display{
-    display: flex;
-    justify-content: end;
-    border: 1px solid black;
-    align-items: flex-end;
-    width: 300px;
-    height: 100px;  
+#display{
+    grid-column: span 4;
+    border: 1px solid  blue;
+    display: grid;
+    align-items: center;
+    
+
 }
 
-#clear, #equal{
+.clear, .equal{
     grid-column: span 2;
 }

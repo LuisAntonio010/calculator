@@ -1,4 +1,24 @@
-let operator = ''
+let numbers = Array.from(document.getElementsByClassName('numbers'))
+let operators = Array.from(document.getElementsByClassName('operators'))
+let display = document.getElementById('display')
+
+let firstNumber = '';
+let clickedOperator = '';
+let storedNumber = ''; 
+let secondNumber = ''; 
+
+numbers.forEach( number => {
+    number.addEventListener('click',() => {
+    firstNumber += number.textContent
+    display.innerText = firstNumber
+    })
+})
+
+operators.forEach(operator => {
+    operator.addEventListener('click',() => {
+        firstNumber = storedNumber
+    })
+})
 
 
 function add (a,b){
@@ -17,20 +37,22 @@ function divide (a,b) {
     return a/b
 }
 
-function operate (num1, num2){
+
+function operate (a, b, operator){
     switch(operator){
-        case 'add':
-            return add(num1, num2)
+        case '+':
+            return add(a, b)
             break;
-        case 'substract':
-            return substract(num1, num2)
+        case '-':
+            return substract(a, b)
             break;
-        case 'multiply':
-            return multiply(num1, num2)
+        case '*':
+            return multiply(a, b)
             break;
-        case 'divide' :
-            return divide (num1, num2)
+        case '÷' :
+            return divide (a, b)
             break;
         default:
+            break;
     }
 }
