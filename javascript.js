@@ -16,21 +16,21 @@ function numberClick(){
     numbers.forEach( number => {
         number.addEventListener('click',() => {
             if(result.toString().length <= 1 && storedNumber && inputValue && result){
-            result = storedNumber
-            result = ''
-            inputValue = ''
-            inputValue += number.textContent
-            display.innerText =  inputValue
+                result = storedNumber
+                result = ''
+                inputValue = ''
+                inputValue += number.textContent
+                display.innerText =  inputValue
             }else if(result.toString().length >= 1){
                 inputValue = '';
                 clickedOperator = '';
                 storedNumber = ''; 
                 result = '';
                 inputValue += number.textContent
-                display.innerText = clickedOperator + inputValue
-            }else{
+                display.innerText =  inputValue}
+            else{
                 inputValue += number.textContent
-                display.innerText = clickedOperator + inputValue
+                display.innerText = inputValue
             }
         })
     })
@@ -41,7 +41,7 @@ numberClick()
 function operatorClick(){
     operators.forEach(operator => {
         operator.addEventListener('click',() => {
-            if(result.toString().length <= 1 && inputValue && storedNumber){
+            if(result.toString().length <= 1 && inputValue && storedNumber && clickedOperator){
                 calculate()
                 result = storedNumber
                 inputValue = ''
@@ -71,6 +71,7 @@ function calculate(){
         result = operate(parseFloat(storedNumber), parseFloat(inputValue), clickedOperator)
         display.innerText = result
         storedNumber = result
+        clickedOperator = ''
 }
 
 equalButton.addEventListener('click', calculate)
@@ -89,7 +90,8 @@ clearKeyClick()
 function deleteClickKey(){
     deleteButton.addEventListener('click', () =>{
         display.innerText = display.innerText.slice(0,-1)
-        inputValue = display.innerText
+        inputValue = display.innerText 
+
     })
 }
 deleteClickKey()
