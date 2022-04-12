@@ -15,16 +15,22 @@ let result = '';
 function numberClick(){
     numbers.forEach( number => {
         number.addEventListener('click',() => {
-            if(result.toString().length >= 1){
+            if(result.toString().length <= 1 && storedNumber && inputValue && result){
+            result = storedNumber
+            result = ''
+            inputValue = ''
+            inputValue += number.textContent
+            display.innerText =  inputValue
+            }else if(result.toString().length >= 1){
                 inputValue = '';
                 clickedOperator = '';
                 storedNumber = ''; 
                 result = '';
                 inputValue += number.textContent
-                display.innerText = inputValue
+                display.innerText = clickedOperator + inputValue
             }else{
                 inputValue += number.textContent
-                display.innerText = inputValue
+                display.innerText = clickedOperator + inputValue
             }
         })
     })
@@ -35,18 +41,27 @@ numberClick()
 function operatorClick(){
     operators.forEach(operator => {
         operator.addEventListener('click',() => {
-            if(result.toString().length >= 1){
-            storedNumber = result      
-            result = ''     
-            inputValue = ''
-            clickedOperator = operator.innerText
-            display.innerText = clickedOperator + inputValue;                
-            }else{
-            storedNumber = inputValue            
-            inputValue = ''
-            clickedOperator = operator.innerText
-            display.innerText = clickedOperator + inputValue;
+            if(result.toString().length <= 1 && inputValue && storedNumber){
+                calculate()
+                result = storedNumber
+                inputValue = ''
+                result = ''
+                clickedOperator = operator.innerText
+                display.innerText =  storedNumber + clickedOperator;  
             }
+            else if(result.toString().length >= 1){
+                storedNumber = result      
+                result = ''
+                inputValue = ''
+                clickedOperator = operator.innerText
+                display.innerText = clickedOperator + inputValue;  
+            }else{
+                storedNumber = inputValue            
+                inputValue = ''
+                clickedOperator = operator.innerText
+                display.innerText = clickedOperator + inputValue;
+            }
+            
         })
     })
 }
