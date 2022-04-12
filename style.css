@@ -3,19 +3,50 @@ html{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0%;
+    height: 0%;
+    background: linear-gradient(to right, rgb(238, 255, 0), rgb(128, 87, 0))
+}
 .container{
     display: grid;
-    justify-content: center;
     grid-template-columns: repeat(4, 75px);
-    grid-template-rows:  repeat(6,75px);
-    border: 1px solid  blue
+    grid-template-rows:  repeat(6,75px);    
 }
 
 #display{
     grid-column: span 4;
-    border: 1px solid  blue;
     display: grid;
     align-items: center;
+    background-color:rgba(0,0,0, .75);
+    color:white;
+    padding: 0.75rem;
+    justify-content: end;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+button{
+font-size: 1.5rem;
+border: 1px solid black;
+cursor: pointer;
+}
+
+button:hover{
+    background-color: aliceblue;
+}
+
+.operators{
+    background-color: rgb(29, 202, 202);
+}
+
+#equalButton, #clearButton, #deleteButton{
+    background-color: orange;
 }
 
 #clearButton, #equalButton{

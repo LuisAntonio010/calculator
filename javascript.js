@@ -54,7 +54,12 @@ function operatorClick(){
                 result = ''
                 inputValue = ''
                 clickedOperator = operator.innerText
-                display.innerText = clickedOperator + inputValue;  
+                display.innerText = clickedOperator + inputValue;
+            }else if(storedNumber && clickedOperator)  {
+                inputValue = storedNumber
+                inputValue = ''
+                clickedOperator = operator.innerText
+                display.innerText = clickedOperator + inputValue;
             }else{
                 storedNumber = inputValue            
                 inputValue = ''
@@ -97,9 +102,9 @@ function deleteClickKey(){
 deleteClickKey()
 
 function decimalDisable(){
-    
+    if(inputValue.innerText.includes('.')){
     decimalButton.disabled = true;
-    
+    }
 }
 decimalDisable()
 
