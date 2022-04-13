@@ -21,16 +21,19 @@ function numberClick(){
                 inputValue = ''
                 inputValue += number.textContent
                 display.innerText =  inputValue
+                decimalDisable()
             }else if(result.toString().length >= 1){
                 inputValue = '';
                 clickedOperator = '';
                 storedNumber = ''; 
                 result = '';
                 inputValue += number.textContent
-                display.innerText =  inputValue}
-            else{
+                display.innerText =  inputValue
+                decimalDisable()
+            }else{
                 inputValue += number.textContent
                 display.innerText = inputValue
+                decimalDisable()
             }
         })
     })
@@ -47,26 +50,28 @@ function operatorClick(){
                 inputValue = ''
                 result = ''
                 clickedOperator = operator.innerText
-                display.innerText =  storedNumber + clickedOperator;  
-            }
-            else if(result.toString().length >= 1){
+                display.innerText =  storedNumber + clickedOperator; 
+                decimalDisable() 
+            }else if(result.toString().length >= 1){
                 storedNumber = result      
                 result = ''
                 inputValue = ''
                 clickedOperator = operator.innerText
                 display.innerText = clickedOperator + inputValue;
+                decimalDisable()
             }else if(storedNumber && clickedOperator)  {
                 inputValue = storedNumber
                 inputValue = ''
                 clickedOperator = operator.innerText
                 display.innerText = clickedOperator + inputValue;
+                decimalDisable()
             }else{
                 storedNumber = inputValue            
                 inputValue = ''
                 clickedOperator = operator.innerText
                 display.innerText = clickedOperator + inputValue;
+                decimalDisable()
             }
-            
         })
     })
 }
@@ -77,6 +82,7 @@ function calculate(){
         display.innerText = result
         storedNumber = result
         clickedOperator = ''
+        decimalDisable()
 }
 
 equalButton.addEventListener('click', calculate)
@@ -87,6 +93,7 @@ function clearKeyClick(){
         clickedOperator = '';
         storedNumber = ''; 
         result =''
+        decimalButton.disabled = false;
         display.innerText = 0
     })
 }
@@ -96,18 +103,22 @@ function deleteClickKey(){
     deleteButton.addEventListener('click', () =>{
         display.innerText = display.innerText.slice(0,-1)
         inputValue = display.innerText 
-
+        decimalDisable()
     })
 }
 deleteClickKey()
 
 function decimalDisable(){
-    if(inputValue.innerText.includes('.')){
+    if(display.innerText.includes('.') === true){
     decimalButton.disabled = true;
+    }if (display.innerText.includes('.') === false){
+    decimalButton.disabled = false;
     }
 }
-decimalDisable()
 
+decimalButton.addEventListener('click', () => {
+    decimalDisable()
+})
 
 function add (a,b){
     return a + b

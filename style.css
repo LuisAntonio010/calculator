@@ -1,14 +1,13 @@
 html{
     box-sizing: border-box;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+    font-family:''Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;'
+}   
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     margin: 0%;
     height: 0%;
     background: linear-gradient(to right, rgb(238, 255, 0), rgb(128, 87, 0))
@@ -29,16 +28,19 @@ body {
     justify-content: end;
     word-wrap: break-word;
     word-break: break-all;
+    font-size: 2rem;
 }
 
 button{
-font-size: 1.5rem;
+font-size: 1.2rem;
 border: 1px solid black;
 cursor: pointer;
+background-color: rgb(238, 235, 230);
 }
 
 button:hover{
     background-color: aliceblue;
+    font-size: 1.4rem;
 }
 
 .operators{
@@ -51,4 +53,9 @@ button:hover{
 
 #clearButton, #equalButton{
     grid-column: span 2;
+}
+
+button:disabled, button[disabled]{
+    background-color: rgb(238, 235, 230);
+    padding: 0.75rem;
 }
